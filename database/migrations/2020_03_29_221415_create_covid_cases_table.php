@@ -17,13 +17,13 @@ class CreateCovidCasesTable extends Migration
 			$table->engine = 'InnoDB';
             $table->id();
             $table->integer('batch');
-            $table->integer('fips')->nullable();
+            $table->string('fips')->nullable();
             $table->string('admin')->nullable();
             $table->string('province_state')->nullable();
             $table->string('country_region');
             $table->string('lastupdate');
-            $table->decimal('latitude', 19, 16);
-            $table->decimal('longitude', 19, 16);
+            $table->string('latitude', 19, 16)->nullable();
+            $table->string('longitude', 19, 16)->nullable();
             $table->integer('confirmed');
             $table->integer('deaths');
             $table->integer('recovered');

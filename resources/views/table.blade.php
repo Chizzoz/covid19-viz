@@ -6,7 +6,7 @@
 					<div class="column">
 						<div class="card">
 							<div class="card-content">
-                                <table class="table is-striped is-hoverable">
+                                <table class="table is-striped is-hoverable is-fullwidth">
                                     <thead>
                                         <tr>
                                             <th>#</th>

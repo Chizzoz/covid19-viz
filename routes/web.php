@@ -1,5 +1,6 @@
 <?php
 
+use App\CovidCase;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
+	$data['covid_cases'] = CovidCase::limit(1000)->orderBy('country_region', 'desc')->where('batch', $latest_batch)->get();
+
+    return view('welcome', $data);
 })->name('welcome');
 
 Auth::routes();
@@ -29,7 +33,10 @@ Route::post('/global/pull/post', 'CovidCaseController@pullGlobaData')->name('pos
 Route::get('table', function(){
     $data['heading'] = "Table";
 	
-	return view('layouts.app')->nest('table', 'table');
+	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
+	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->get();
+
+	return view('layouts.app')->nest('table', 'table', $data);
 })->name('table');
 
 // About

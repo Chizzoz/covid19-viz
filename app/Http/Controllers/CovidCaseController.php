@@ -68,19 +68,19 @@ class CovidCaseController extends Controller
             
             $covid_case->fill([
                 'batch' => $batch,
-                'fips' => $data_array[0],
-                'admin' => $data_array[1],
-                'province_state' => $data_array[2],
+                'fips' => $data_array[0] ?? null,
+                'admin' => $data_array[1] ?? null,
+                'province_state' => $data_array[2] ?? null,
                 'country_region' => $data_array[3],
                 'lastupdate' => $data_array[4],
-                'latitude' => $data_array[5],
-                'longitude' => $data_array[6],
+                'latitude' => $data_array[5] ?? null,
+                'longitude' => $data_array[6] ?? null,
                 'confirmed' => $data_array[7],
                 'deaths' => $data_array[8],
                 'recovered' => $data_array[9],
                 'active' => $data_array[10],
                 'combined_key' => $data_array[11],
-                'unique_source' => $data_array[11] . $file,
+                'unique_source' => \Str::slug($data_array[11] . $file, '-'),
             ]);
             $covid_case->save();
         }

@@ -164,16 +164,24 @@
 					marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
 					
 					<?php
-						if(!empty($covid_cases)) {
 							$count = 3;
 							foreach($covid_cases as $covid_case) {
-								echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>');";
+								if(isset($covid_case->latitude) && isset($covid_case->longitude)) {
+									echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$covid_case->province_state}, {$covid_case->country_region}</b><br><b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>');";
+									$count++;
+								}
+							}
+					?>
+					
+					<?php
+							$count = 3;
+							$markers = '';
+							foreach($covid_cases as $covid_case) {
+								$markers .= ",marker{$count}";
 								$count++;
 							}
-						}
+							echo "var markers = L.layerGroup([marker1,marker2{$markers}]);";
 					?>
-
-					var markers = L.layerGroup([marker1,marker2]);
 
 					var mymap = L.map('mapid', {
 						center: [-13.4102, 28.2616],
