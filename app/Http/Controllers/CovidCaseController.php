@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\cases;
+use App\CovidCase;
 use Illuminate\Http\Request;
 
-class CasesController extends Controller
+class CovidCaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CasesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\cases  $cases
+     * @param  \App\CovidCase  $covid_case
      * @return \Illuminate\Http\Response
      */
-    public function show(cases $cases)
+    public function show(CovidCase $covid_case)
     {
         //
     }
@@ -52,10 +52,10 @@ class CasesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\cases  $cases
+     * @param  \App\CovidCase  $covid_case
      * @return \Illuminate\Http\Response
      */
-    public function edit(cases $cases)
+    public function edit(CovidCase $covid_case)
     {
         //
     }
@@ -64,10 +64,10 @@ class CasesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\cases  $cases
+     * @param  \App\CovidCase  $covid_case
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cases $cases)
+    public function update(Request $request, CovidCase $covid_case)
     {
         //
     }
@@ -75,10 +75,10 @@ class CasesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\cases  $cases
+     * @param  \App\CovidCase  $covid_case
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cases $cases)
+    public function destroy(CovidCase $covid_case)
     {
         //
     }

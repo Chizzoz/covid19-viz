@@ -35,17 +35,17 @@
                                     </tfoot>
                                     <tbody>
                                         <?php $count = 0; ?>
-                                        @foreach($cases as $case)
+                                        @foreach($covid_cases as $covid_case)
                                             <tr>
                                                 <th>{{ $count++ }}</th>
-                                                <td>{{ $case->admin }}</td>
-                                                <td>{{ $case->province_state }}</td>
-                                                <td>{{ $case->country_region }}</td>
-                                                <td>{{ $case->lastupdate }}</td>
-                                                <td>{{ $case->confirmed }}</td>
-                                                <td>{{ $case->deaths }}</td>
-                                                <td>{{ $case->recovered }}</td>
-                                                <td>{{ $case->active }}</td>
+                                                <td>{{ $covid_case->admin }}</td>
+                                                <td>{{ $covid_case->province_state }}</td>
+                                                <td>{{ $covid_case->country_region }}</td>
+                                                <td>{{ $covid_case->lastupdate }}</td>
+                                                <td>{{ $covid_case->confirmed }}</td>
+                                                <td>{{ $covid_case->deaths }}</td>
+                                                <td>{{ $covid_case->recovered }}</td>
+                                                <td>{{ $covid_case->active }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
