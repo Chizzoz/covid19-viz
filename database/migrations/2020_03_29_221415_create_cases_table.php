@@ -22,8 +22,8 @@ class CreateCasesTable extends Migration
             $table->string('province_state')->nullable();
             $table->string('country_region');
             $table->dateTime('lastupdate');
-            $table->decimal('latitude', 3, 16);
-            $table->decimal('longitude', 3, 16);
+            $table->decimal('latitude', 19, 16);
+            $table->decimal('longitude', 19, 16);
             $table->integer('confirmed');
             $table->integer('deaths');
             $table->integer('recovered');

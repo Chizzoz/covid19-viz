@@ -25,19 +25,19 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
-                                <label class="label">Name</label>
+                                <label class="label">Username</label>
                             </div>
 
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control">
-                                        <input class="input" id="name" type="name" name="name" value="{{ old('name') }}"
+                                        <input class="input" id="username" type="username" name="username" value="{{ old('username') }}"
                                                required autofocus>
                                     </p>
 
                                     @if ($errors->has('name'))
                                         <p class="help is-danger">
-                                            {{ $errors->first('name') }}
+                                            {{ $errors->first('username') }}
                                         </p>
                                     @endif
                                 </div>
