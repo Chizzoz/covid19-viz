@@ -1,100 +1,217 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- CSRF Token -->
+		<script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
+		<meta name="csrf-token" content="{{ csrf_token() }}"/>
+		<title><?php if (isset($heading)) echo $heading . " | "; ?>Covid-19 Coronavirus Visualisations | One Ziko</title>
+		<!-- unflurl -->
+			<!-- TODO -->
+		<!-- favicon -->
+		<link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
+		<link rel="icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
+		<!-- Styling sheets -->
+		<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/landing.css') }}">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+		<link href="{{ asset('/css/leaflet.defaultextent.css') }}" rel="stylesheet">
+		<link href="{{ asset('/css/L.Control.Locate.min.css') }}" rel="stylesheet">
+		<style>
+			#map { width: 800px; height: 500px; }
+			.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+			.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+		</style>
+		<!-- font -->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<!-- Leaflet -->
+		<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+		<script src="{{ asset('/js/leaflet.defaultextent.js') }}"></script>
+		<script src="{{ asset('/js/L.Control.Locate.min.js') }}"></script>
+		<!-- Use Fontawesome -->
+		<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+		<!-- Analytics JS -->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        <title>Laravel</title>
+			ga('create', 'UA-40321470-1', 'auto');
+			ga('send', 'pageview');
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+		</script>
+	</head>
+	<body>
+		<!-- fb share JS-->
+		<div id="fb-root"></div>
+		<!-- fb SDK JS-->
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '706048359780521',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v3.2'
+            });
+              
+            FB.AppEvents.logPageView();   
+              
+          };
+        
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+		<section class="map is-fullheight">
+        	<div class="map-head">
+				<nav class="navbar is-dark">
+					<div class="navbar-brand">
+						<a class="navbar-item" href="{{ route('welcome') }}">
+							<img src="{{ asset('/img/sars-cov-19.jpg') }}" alt="Zambian Startups">
+						</a>
+						<div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+					<div id="navbarExampleTransparentExample" class="navbar-menu">
+						<div class="navbar-start">
+							<a class="navbar-item" href="{{ route('home') }}">Coming Soon</a>
+							@if (!Auth::guest())
+								<?php $startup_content_types = App\Models\StartupContentType::all() ?>
+								@foreach($startup_content_types as $startup_content_type)
+									<a class="navbar-item" href="{{ route('view-startup-content-by-type', $startup_content_type->startup_content_type_slug) }}" title="{{ $startup_content_type->startup_content_type }}">{{ $startup_content_type->startup_content_type }}</a>
+								@endforeach
+								<span class="navbar-item">
+									<a href="{{ route('new-startup-content', 2) }}" class="button is-white is-outlined" title="Submit A Startup">Submit A Startup</a>
+								</span>
+							@endif
+						</div>
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+						<div class="navbar-end">
+							@if (Auth::guest())
+								<a class="navbar-item" href="{{ route('login') }}" title="Login">Login</a>
+								<a class="navbar-item" href="{{ route('register') }}" title="Register">Register</a>
+								<a class="navbar-item" href="{{ url('about') }}" title="About">About</a>
+								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
+							@else
+								<?php $user_admin_access = App\Models\UserAccess::whereUserRoleId(1)->whereUserId(Auth::user()->id)->orderBy('user_role_id', 'ASC')->first() ?>
+								<a class="navbar-item" href="{{ url('about') }}">About</a>
+								<a class="navbar-item" href="{{ url('contact') }}">Contact Us</a>
+								<div class="navbar-item has-dropdown is-hoverable">
+									<a class="navbar-item" href="{{ route('view-user-profile', Auth::user()->username_slug) }}"><figure class="image"><img class="is-rounded user-profile-picture" src="<?php
+										if (!(Auth::user()->user_profile_picture == "")) {
+											echo str_replace('users', 'small', Auth::user()->user_profile_picture);
+										} else {
+											echo asset('/images/small/default-user-profile-picture.png');
+										} ?>" title="{{ Auth::user()->username }}" alt="{{ Auth::user()->username }}"></figure></a>
+									<div class="navbar-dropdown is-right">
+										<a class="navbar-item" href="{{ route('select-startup-content-type') }}">Post Startup Content</a>
+										<a class="navbar-item" href="{{ route('manage-content', array(Auth::user()->username_slug, 'startups-content')) }}">Manage Content</a>
+										@if (isset($user_admin_access))
+											<a class="navbar-item" href="{{ route('manage-users', Auth::user()->username_slug) }}">Manage Users</a>
+										@endif
+										<a class="navbar-item" href="{{ route('edit-user-profile', Auth::user()->username_slug) }}">Edit Profile</a>
+										<a class="navbar-item" href="{{ route('logout') }}"
+										onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+											Logout
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST"
+										style="display: none;">
+											{{ csrf_field() }}
+										</form>
+									</div>
+								</div>
+							@endif
+						</div>
+					</div>
+				</nav>
             </div>
-        </div>
-    </body>
+			<div class="map-body">
+				<div id="mapid" class="mapclass"></div>
+				<?php
+					$filename = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-27-2020.csv';
+
+					// The nested array to hold all the arrays
+					$covid19_data = []; 
+					
+					// Open the file for reading
+					if (($h = fopen("{$filename}", "r")) !== FALSE) 
+					{
+					// Each line in the file is converted into an individual array that we call $data
+					// The items of the array are comma separated
+					while (($data = fgetcsv($h, 1000, ",")) !== FALSE) 
+					{
+						// Each individual array is being pushed into the nested array
+						$covid19_data[] = $data;		
+					}
+					
+					// Close the file
+					fclose($h);
+					}
+				?>
+				<script>
+					var grayscale = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+						maxZoom: 18,
+						attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					});
+
+					var streets = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+						maxZoom: 19,
+						attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					});
+					
+					var marker1 = L.marker([-15.4102, 28.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
+					
+					marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
+
+					var markers = L.layerGroup([marker1,marker2]);
+
+					var mymap = L.map('mapid', {
+						center: [-13.4102, 28.2616],
+						zoom: 6,
+						layers: [streets, markers],
+						defaultExtentControl: true
+					});
+
+					mymap.attributionControl.addAttribution('Population data &copy; <a href="https://earthworks.stanford.edu/">Stanford University Earth Works</a>');
+					
+					var baseMaps = {
+						"Streets": streets,
+						"Grayscale": grayscale
+					};
+
+					var overlayMaps = {
+						"Markers": markers
+					};
+
+					L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+
+				</script>
+			</div>
+			<!-- Footer -->
+			<div class="map-foot">
+				<div class="content">
+					<div class="card">
+						<div class="card-content">
+							<strong>Covid-19 Viz</strong> &copy; <a href="https://oneziko.com" title="One Ziko Homepage" target="_blank">One Ziko</a> <?php echo date("Y") ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script async src="{{ asset('/js/bulma.js') }}"></script>
+		<script src="{{ asset('/js/leaflet.defaultextent.js') }}"></script>
+		<script src="{{ asset('/js/L.Control.Locate.min.js') }}"></script>
+	</body>
+
 </html>
