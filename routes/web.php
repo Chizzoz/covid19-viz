@@ -22,6 +22,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // About
+Route::get('table', function(){
+    $data['heading'] = "Table";
+	
+	return view('layouts.app')->nest('table', 'table');
+})->name('table');
+
+// About
 Route::get('about', function(){
     $data['heading'] = "About";
 	

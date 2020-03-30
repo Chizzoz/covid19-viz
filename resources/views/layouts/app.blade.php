@@ -73,7 +73,7 @@
 
 					<div id="navbarExampleTransparentExample" class="navbar-menu">
 						<div class="navbar-start">
-							<a class="navbar-item" href="{{ route('home') }}">Coming Soon</a>
+							<a class="navbar-item" href="{{ route('table') }}">Table</a>
 							@if (!Auth::guest())
 								<?php $startup_content_types = App\Models\StartupContentType::all() ?>
 								@foreach($startup_content_types as $startup_content_type)

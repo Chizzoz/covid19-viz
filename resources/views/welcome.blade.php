@@ -85,7 +85,7 @@
 
 					<div id="navbarExampleTransparentExample" class="navbar-menu">
 						<div class="navbar-start">
-							<a class="navbar-item" href="{{ route('home') }}">Coming Soon</a>
+							<a class="navbar-item" href="{{ route('table') }}">Table</a>
 							@if (!Auth::guest())
 								<?php $startup_content_types = App\Models\StartupContentType::all() ?>
 								@foreach($startup_content_types as $startup_content_type)
@@ -173,6 +173,11 @@
 					var marker1 = L.marker([-15.4102, 28.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
 					
 					marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
+					
+					<?php $count = 3; ?>
+					@foreach($cases as $case)
+						{{ "marker{$count++} = L.marker([{$case->latitude}, {$case->longitude}]).bindPopup('<b>Confirmed: {$case->confirmed}</b><br><b>Deaths: {$case->deaths}</b><br><b>Recovered: {$case->recovered}</b>');" }}
+					@endforeach
 
 					var markers = L.layerGroup([marker1,marker2]);
 
