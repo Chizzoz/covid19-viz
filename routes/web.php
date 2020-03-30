@@ -19,7 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::get('/global/pull', 'CovidCaseController@index')->name('pull_global_covid19_data');
+
+Route::post('/global/pull/post', 'CovidCaseController@pullGlobaData')->name('post_global_pull_request');
 
 // About
 Route::get('table', function(){

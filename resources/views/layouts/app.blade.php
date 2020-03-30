@@ -75,13 +75,7 @@
 						<div class="navbar-start">
 							<a class="navbar-item" href="{{ route('table') }}">Table</a>
 							@if (!Auth::guest())
-								<?php $startup_content_types = App\Models\StartupContentType::all() ?>
-								@foreach($startup_content_types as $startup_content_type)
-									<a class="navbar-item" href="{{ route('view-startup-content-by-type', $startup_content_type->startup_content_type_slug) }}" title="{{ $startup_content_type->startup_content_type }}">{{ $startup_content_type->startup_content_type }}</a>
-								@endforeach
-								<span class="navbar-item">
-									<a href="{{ route('new-startup-content', 2) }}" class="button is-white is-outlined" title="Submit A Startup">Submit A Startup</a>
-								</span>
+								<a class="navbar-item" href="{{ route('table') }}">Table</a>
 							@endif
 						</div>
 
@@ -92,23 +86,19 @@
 								<a class="navbar-item" href="{{ url('about') }}" title="About">About</a>
 								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
 							@else
-								<?php $user_admin_access = App\Models\UserAccess::whereUserRoleId(1)->whereUserId(Auth::user()->id)->orderBy('user_role_id', 'ASC')->first() ?>
 								<a class="navbar-item" href="{{ url('about') }}">About</a>
 								<a class="navbar-item" href="{{ url('contact') }}">Contact Us</a>
 								<div class="navbar-item has-dropdown is-hoverable">
-									<a class="navbar-item" href="{{ route('view-user-profile', Auth::user()->username_slug) }}"><figure class="image"><img class="is-rounded user-profile-picture" src="<?php
+									<a class="navbar-item" href="#"><figure class="image"><img class="is-rounded user-profile-picture" src="<?php
 										if (!(Auth::user()->user_profile_picture == "")) {
 											echo str_replace('users', 'small', Auth::user()->user_profile_picture);
 										} else {
 											echo asset('/images/small/default-user-profile-picture.png');
 										} ?>" title="{{ Auth::user()->username }}" alt="{{ Auth::user()->username }}"></figure></a>
 									<div class="navbar-dropdown is-right">
-										<a class="navbar-item" href="{{ route('select-startup-content-type') }}">Post Startup Content</a>
-										<a class="navbar-item" href="{{ route('manage-content', array(Auth::user()->username_slug, 'startups-content')) }}">Manage Content</a>
-										@if (isset($user_admin_access))
-											<a class="navbar-item" href="{{ route('manage-users', Auth::user()->username_slug) }}">Manage Users</a>
-										@endif
-										<a class="navbar-item" href="{{ route('edit-user-profile', Auth::user()->username_slug) }}">Edit Profile</a>
+										<a class="navbar-item" href="{{ route('pull_global_covid19_data') }}">Pull Global Covid-19 Data</a>
+										<a class="navbar-item" href="#">Post New Covid-19 Case</a>
+										<a class="navbar-item" href="#">Edit Covid-19 Case</a>
 										<a class="navbar-item" href="{{ route('logout') }}"
 										onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 											Logout

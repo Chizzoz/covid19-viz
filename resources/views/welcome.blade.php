@@ -164,10 +164,12 @@
 					marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
 					
 					<?php
-						$count = 3;
-						foreach($covid_cases as $covid_case) {
-							echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>');";
-							$count++;
+						if(!empty($covid_cases)) {
+							$count = 3;
+							foreach($covid_cases as $covid_case) {
+								echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>');";
+								$count++;
+							}
 						}
 					?>
 

@@ -21,7 +21,7 @@ class CreateCovidCasesTable extends Migration
             $table->string('admin')->nullable();
             $table->string('province_state')->nullable();
             $table->string('country_region');
-            $table->dateTime('lastupdate');
+            $table->string('lastupdate');
             $table->decimal('latitude', 19, 16);
             $table->decimal('longitude', 19, 16);
             $table->integer('confirmed');
@@ -29,6 +29,7 @@ class CreateCovidCasesTable extends Migration
             $table->integer('recovered');
             $table->integer('active');
             $table->string('combined_key');
+            $table->string('unique_source');
             $table->timestamps();
         });
     }
