@@ -93,8 +93,6 @@
 
 						<div class="navbar-end">
 							@if (Auth::guest())
-								<a class="navbar-item" href="{{ route('login') }}" title="Login">Login</a>
-								<a class="navbar-item" href="{{ route('register') }}" title="Register">Register</a>
 								<a class="navbar-item" href="{{ url('about') }}" title="About">About</a>
 								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
 							@else
