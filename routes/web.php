@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
-	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state', '==' ,'')->get();
+	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state', '')->get();
 
     return view('welcome', $data);
 })->name('welcome');
