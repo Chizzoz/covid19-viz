@@ -60,9 +60,9 @@ class CovidCaseController extends Controller
         } catch(\Exception $e) {
             $current_batch = 0;
         }
-			
+
         /* array to hold already stored items */
-        $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
+        $stored_cases = [];
         
         $batch = $current_batch + 1;
         $covid19_data = array_slice($covid19_data, 1);
@@ -89,6 +89,9 @@ class CovidCaseController extends Controller
                     'unique_source' => \Str::slug($data_array[11] . $file, '-'),
                 ]);
                 $covid_case->save();
+
+                /* array to hold already stored items */
+                $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
             }
         }
 
