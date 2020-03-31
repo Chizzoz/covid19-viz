@@ -62,7 +62,7 @@ class CovidCaseController extends Controller
         }
 
         /* array to hold already stored items */
-        $stored_cases = [];
+        $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
         
         $batch = $current_batch + 1;
         $covid19_data = array_slice($covid19_data, 1);
