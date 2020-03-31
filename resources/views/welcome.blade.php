@@ -176,13 +176,15 @@
 					?>
 					
 					<?php
-							$count = 1;
+							$count = 2;
 							$markers = '';
-							foreach($covid_cases as $covid_case) {
-								$markers .= ",marker{$count}";
-								$count++;
+							if ($markers != '') {
+								foreach($covid_cases as $covid_case) {
+									$markers .= ",marker{$count}";
+									$count++;
+								}
+								echo "var markers = L.layerGroup([{$markers}]);";
 							}
-							echo "var markers = L.layerGroup([marker1,marker2{$markers}]);";
 					?>
 
 					var mymap = L.map('mapid', {
