@@ -60,40 +60,30 @@ class CovidCaseController extends Controller
         } catch(\Exception $e) {
             $current_batch = 0;
         }
-
-        /* array to hold already stored items */
-        $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
         
         $batch = $current_batch + 1;
         $covid19_data = array_slice($covid19_data, 1);
         foreach($covid19_data as $data_array) {
             $unique_source = \Str::slug($data_array[11] . $file, '-');
-            if (\Arr::has($stored_cases, $unique_source)) {
-                // Do nothing
-            } else {
-                $covid_case = new CovidCase;
-                
-                $covid_case->fill([
-                    'batch' => $batch,
-                    'fips' => $data_array[0] ?? null,
-                    'admin' => $data_array[1] ?? null,
-                    'province_state' => $data_array[2] ?? null,
-                    'country_region' => $data_array[3],
-                    'lastupdate' => $data_array[4],
-                    'latitude' => $data_array[5] ?? null,
-                    'longitude' => $data_array[6] ?? null,
-                    'confirmed' => $data_array[7],
-                    'deaths' => $data_array[8],
-                    'recovered' => $data_array[9],
-                    'active' => $data_array[10],
-                    'combined_key' => $data_array[11],
-                    'unique_source' => $unique_source,
-                ]);
-                $covid_case->save();
-
-                /* array to hold already stored items */
-                $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
-            }
+            $covid_case = new CovidCase;
+            
+            $covid_case->fill([
+                'batch' => $batch,
+                'fips' => $data_array[0] ?? null,
+                'admin' => $data_array[1] ?? null,
+                'province_state' => $data_array[2] ?? null,
+                'country_region' => $data_array[3],
+                'lastupdate' => $data_array[4],
+                'latitude' => $data_array[5] ?? null,
+                'longitude' => $data_array[6] ?? null,
+                'confirmed' => $data_array[7],
+                'deaths' => $data_array[8],
+                'recovered' => $data_array[9],
+                'active' => $data_array[10],
+                'combined_key' => $data_array[11],
+                'unique_source' => $unique_source,
+            ]);
+            $covid_case->save();
         }
 
         return redirect()->route('table');
