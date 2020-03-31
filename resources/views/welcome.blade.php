@@ -166,8 +166,10 @@
 					<?php
 							$count = 3;
 							foreach($covid_cases as $covid_case) {
-								if(isset($covid_case->latitude) && isset($covid_case->longitude)) {
-									echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$covid_case->province_state}, {$covid_case->country_region}</b><br><b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>');";
+								if(isset($covid_case->latitude) && isset($covid_case->longitude) && isset($covid_case->confirmed) && isset($covid_case->deaths) && isset($covid_case->recovered)) {
+									$province_state = str_replace("'","-", $covid_case->province_state);
+									$country_region = str_replace("'","-", $covid_case->country_region);
+									echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$province_state}, {$country_region}</b><br><b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>'); \n";
 									$count++;
 								}
 							}

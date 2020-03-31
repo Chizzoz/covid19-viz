@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
-	$data['covid_cases'] = CovidCase::limit(1000)->orderBy('country_region', 'desc')->where('batch', $latest_batch)->get();
+	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state', '==' ,'')->get();
 
     return view('welcome', $data);
 })->name('welcome');
@@ -34,7 +34,7 @@ Route::get('table', function(){
     $data['heading'] = "Table";
 	
 	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
-	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->get();
+	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state','')->get();
 
 	return view('layouts.app')->nest('table', 'table', $data);
 })->name('table');
