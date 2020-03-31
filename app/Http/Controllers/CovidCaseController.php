@@ -92,7 +92,7 @@ class CovidCaseController extends Controller
                 $covid_case->save();
 
                 /* array to hold already stored items */
-                $stored_cases = \Arr::prepend($stored_cases, $unique_source);
+                $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
             }
         }
 
