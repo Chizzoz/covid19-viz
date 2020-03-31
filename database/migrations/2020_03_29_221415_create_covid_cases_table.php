@@ -29,7 +29,7 @@ class CreateCovidCasesTable extends Migration
             $table->integer('recovered');
             $table->integer('active');
             $table->string('combined_key');
-            $table->string('unique_source');
+            $table->string('unique_source')->unique();
             $table->timestamps();
         });
     }
