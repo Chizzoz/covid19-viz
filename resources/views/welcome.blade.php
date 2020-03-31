@@ -94,6 +94,7 @@
 						<div class="navbar-end">
 							@if (Auth::guest())
 								<a class="navbar-item" href="{{ url('about') }}" title="About">About</a>
+								<a class="navbar-item" href="{{ url('credits') }}" title="Credits">Credits</a>
 								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
 							@else
 								<a class="navbar-item" href="{{ url('about') }}">About</a>

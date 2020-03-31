@@ -16,6 +16,7 @@
 		<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/css/landing.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/custom.css') }}">
 		<!-- font -->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<!-- Use Fontawesome -->
@@ -82,6 +83,7 @@
 						<div class="navbar-end">
 							@if (Auth::guest())
 								<a class="navbar-item" href="{{ url('about') }}" title="About">About</a>
+								<a class="navbar-item" href="{{ url('credits') }}" title="Credits">Credits</a>
 								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
 							@else
 								<a class="navbar-item" href="{{ url('about') }}">About</a>
