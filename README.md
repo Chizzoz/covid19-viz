@@ -1,2 +1,2 @@
 # covid19-viz
-Latest COVID-19 Visualisations
+Latest COVID-19 Stats Visualisations
