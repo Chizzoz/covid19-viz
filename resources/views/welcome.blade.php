@@ -159,24 +159,24 @@
 						attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					});
 					
-					var marker1 = L.marker([-15.4102, 28.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
+					// var marker1 = L.marker([-15.4102, 28.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
 					
-					marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
+					// marker2 = L.marker([-14.4102, 25.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
 					
 					<?php
-							$count = 3;
+							$count = 1;
 							foreach($covid_cases as $covid_case) {
 								if(isset($covid_case->latitude) && isset($covid_case->longitude) && isset($covid_case->confirmed) && isset($covid_case->deaths) && isset($covid_case->recovered)) {
 									$province_state = str_replace("'","-", $covid_case->province_state);
 									$country_region = str_replace("'","-", $covid_case->country_region);
-									echo "marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$province_state}, {$country_region}</b><br><b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>'); \n";
+									echo "var marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$province_state}, {$country_region}</b><br><b>Confirmed: {$covid_case->confirmed}</b><br><b>Deaths: {$covid_case->deaths}</b><br><b>Recovered: {$covid_case->recovered}</b>'); \n";
 									$count++;
 								}
 							}
 					?>
 					
 					<?php
-							$count = 3;
+							$count = 1;
 							$markers = '';
 							foreach($covid_cases as $covid_case) {
 								$markers .= ",marker{$count}";
