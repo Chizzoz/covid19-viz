@@ -1,0 +1,7 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/onezikoc/public_html/covid19-viz # Add /<app_folder> if required
+        - /bin/cp -r * $DEPLOYPATH                        #copy all recursively to $DEPLOYPATH
+        
+        
