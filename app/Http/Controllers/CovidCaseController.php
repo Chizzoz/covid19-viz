@@ -67,7 +67,8 @@ class CovidCaseController extends Controller
         $batch = $current_batch + 1;
         $covid19_data = array_slice($covid19_data, 1);
         foreach($covid19_data as $data_array) {
-            if (in_array(\Str::slug($data_array[11] . $file, '-'), $stored_cases)) {
+            $unique_source = \Str::slug($data_array[11] . $file, '-');
+            if (\Arr::has($stored_cases, $unique_source)) {
                 // Do nothing
             } else {
                 $covid_case = new CovidCase;
@@ -86,12 +87,12 @@ class CovidCaseController extends Controller
                     'recovered' => $data_array[9],
                     'active' => $data_array[10],
                     'combined_key' => $data_array[11],
-                    'unique_source' => \Str::slug($data_array[11] . $file, '-'),
+                    'unique_source' => $unique_source,
                 ]);
                 $covid_case->save();
 
                 /* array to hold already stored items */
-                $stored_cases = CovidCase::all()->pluck('unique_source')->toArray();
+                $stored_cases = \Arr::prepend($stored_cases, $unique_source);
             }
         }
 
