@@ -97,9 +97,11 @@
 											echo asset('/images/small/default-user-profile-picture.png');
 										} ?>" title="{{ Auth::user()->username }}" alt="{{ Auth::user()->username }}"></figure></a>
 									<div class="navbar-dropdown is-right">
-										<a class="navbar-item" href="{{ route('pull_global_covid19_data') }}">Pull Global Covid-19 Data</a>
-										<a class="navbar-item" href="#">Post New Covid-19 Case</a>
-										<a class="navbar-item" href="#">Edit Covid-19 Case</a>
+										@if(Auth::user()->user_role_id == 1)
+											<a class="navbar-item" href="{{ route('pull_global_covid19_data') }}">Pull Global Covid-19 Data</a>
+											<a class="navbar-item" href="#">Post New Covid-19 Case</a>
+											<a class="navbar-item" href="#">Edit Covid-19 Case</a>
+										@endif
 										<a class="navbar-item" href="{{ route('logout') }}"
 										onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 											Logout
