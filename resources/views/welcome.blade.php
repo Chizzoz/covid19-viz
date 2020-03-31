@@ -97,6 +97,7 @@
 								<a class="navbar-item" href="{{ url('contact') }}" title="Contact Us">Contact Us</a>
 							@else
 								<a class="navbar-item" href="{{ url('about') }}">About</a>
+								<a class="navbar-item" href="{{ url('credits') }}" title="Credits">Credits</a>
 								<a class="navbar-item" href="{{ url('contact') }}">Contact Us</a>
 								<div class="navbar-item has-dropdown is-hoverable">
 									<a class="navbar-item" href="#"><figure class="image"><img class="is-rounded user-profile-picture" src="<?php
