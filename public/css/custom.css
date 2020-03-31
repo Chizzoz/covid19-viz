@@ -87,3 +87,7 @@ img.user-profile-picture.is-rounded {
   height: auto;
   width: auto;
 }
+
+.area-51 {
+	display: none;
+}
