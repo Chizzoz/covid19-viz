@@ -176,13 +176,13 @@
 					?>
 					
 					<?php
-							$count = 2;
+							$count = 1;
 							$markers = '';
+							foreach($covid_cases as $covid_case) {
+								$markers .= "marker{$count},";
+								$count++;
+							}
 							if ($markers != '') {
-								foreach($covid_cases as $covid_case) {
-									$markers .= ",marker{$count}";
-									$count++;
-								}
 								echo "var markers = L.layerGroup([{$markers}]);";
 							}
 					?>
@@ -190,7 +190,7 @@
 					var mymap = L.map('mapid', {
 						center: [-13.4102, 28.2616],
 						zoom: 6,
-						layers: [streets, markers],
+						layers: [streets<?php if($markers != '') echo ", markers";?>],
 						defaultExtentControl: true
 					});
 
@@ -200,10 +200,11 @@
 						"Streets": streets,
 						"Grayscale": grayscale
 					};
-
-					var overlayMaps = {
-						"Markers": markers
-					};
+					@if($markers != '')
+						var overlayMaps = {
+							"Markers": markers
+						};
+					@endif
 
 					L.control.layers(baseMaps, overlayMaps).addTo(mymap);
 
