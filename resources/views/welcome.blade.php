@@ -170,9 +170,16 @@
 							$count = 1;
 							foreach($covid_cases as $covid_case) {
 								if(isset($covid_case->latitude) && isset($covid_case->longitude) && isset($covid_case->confirmed) && isset($covid_case->deaths) && isset($covid_case->recovered)) {
+									if (500*$covid_case->active <= 400000){
+										$radius = 500*$covid_case->active;
+									} else {
+										$radius = 400000;
+									}
+										
 									$province_state = str_replace("'","-", $covid_case->province_state);
 									$country_region = str_replace("'","-", $covid_case->country_region);
-									echo "var marker{$count} = L.marker([{$covid_case->latitude}, {$covid_case->longitude}]).bindPopup('<b>{$country_region}</b><br>Confirmed: <b>{$covid_case->confirmed}</b><br>Deaths: <b>{$covid_case->deaths}</b><br>Recovered: <b>{$covid_case->recovered}</b><br>Active: <b>{$covid_case->active}</b>'); \n";
+									echo "var circle{$count} = L.circle([{$covid_case->latitude}, {$covid_case->longitude}], { color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: {$radius} }).bindPopup('<b>{$country_region}</b><br>Confirmed: <b>{$covid_case->confirmed}</b><br>Deaths: <b>{$covid_case->deaths}</b><br>Recovered: <b>{$covid_case->recovered}</b><br>Active: <b>{$covid_case->active}</b>'); \n";
+
 									$count++;
 								}
 							}
@@ -180,20 +187,20 @@
 					
 					<?php
 							$count = 1;
-							$markers = '';
+							$circles = '';
 							foreach($covid_cases as $covid_case) {
-								$markers .= "marker{$count},";
+								$circles .= "circle{$count},";
 								$count++;
 							}
-							if ($markers != '') {
-								echo "var markers = L.layerGroup([{$markers}]);";
+							if ($circles != '') {
+								echo "var circles = L.layerGroup([{$circles}]);";
 							}
 					?>
 
 					var mymap = L.map('mapid', {
 						center: [-13.4102, 28.2616],
 						zoom: 6,
-						layers: [streets<?php if($markers != '') echo ", markers";?>],
+						layers: [streets<?php if($circles != '') echo ", circles";?>],
 						defaultExtentControl: true
 					});
 
@@ -203,9 +210,9 @@
 						"Streets": streets,
 						"Grayscale": grayscale
 					};
-					@if($markers != '')
+					@if($circles != '')
 						var overlayMaps = {
-							"Markers": markers
+							"Drawings": circles
 						};
 					@endif
 
