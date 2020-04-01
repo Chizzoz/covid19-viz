@@ -170,18 +170,27 @@
 							$count = 1;
 							foreach($covid_cases as $covid_case) {
 								if(isset($covid_case->latitude) && isset($covid_case->longitude) && isset($covid_case->confirmed) && isset($covid_case->deaths) && isset($covid_case->recovered)) {
-									if (500*$covid_case->active <= 400000){
+									if (500*$covid_case->active < 400000){
 										$radius = 500*$covid_case->active;
 									} else {
 										$radius = 400000;
 									}
-									if(!empty($province_state)) {
-										$province_state = ", " . str_replace("'","-", $covid_case->province_state);
+									if($covid_case->country_region == 'US') {
+										$province_state = 'US';
+										$latitude = '39.099724';
+										$longitude = '-94.578331';
 									} else {
 										$province_state = $covid_case->province_state;
+										$latitude = $covid_case->latitude;
+										$longitude = $covid_case->longitude;
+									}
+									if(!empty($covid_case->province_state)) {
+										$province_state = ", " . str_replace("'","-", $province_state);
+									} else {
+										$province_state = $province_state;
 									}
 									$country_region = str_replace("'","-", $covid_case->country_region);
-									echo "var circle{$count} = L.circle([{$covid_case->latitude}, {$covid_case->longitude}], { color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: {$radius} }).bindPopup('<b>{$country_region} {$province_state}</b><br>Confirmed: <b>{$covid_case->confirmed}</b><br>Deaths: <b>{$covid_case->deaths}</b><br>Recovered: <b>{$covid_case->recovered}</b><br>Active: <b>{$covid_case->active}</b>'); \n";
+									echo "var circle{$count} = L.circle([{$latitude}, {$longitude}], { color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: {$radius} }).bindPopup('<b>{$country_region} {$province_state}</b><br>Confirmed: <b>{$covid_case->confirmed}</b><br>Deaths: <b>{$covid_case->deaths}</b><br>Recovered: <b>{$covid_case->recovered}</b><br>Active: <b>{$covid_case->active}</b>'); \n";
 
 									$count++;
 								}

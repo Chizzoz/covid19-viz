@@ -10,9 +10,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Admin</th>
-                                            <th>Province/ State</th>
                                             <th>Country/ Region</th>
+                                            <th>Province/ State</th>
                                             <th>Last Update</th>
                                             <th>Confirmed</th>
                                             <th>Deaths</th>
@@ -23,8 +22,6 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Admin</th>
-                                            <th>Province/ State</th>
                                             <th>Country/ Region</th>
                                             <th>Last Update</th>
                                             <th>Confirmed</th>
@@ -39,9 +36,8 @@
                                             @foreach($covid_cases as $covid_case)
                                                 <tr>
                                                     <th>{{ $count++ }}</th>
-                                                    <td>{{ $covid_case->admin }}</td>
-                                                    <td>{{ $covid_case->province_state }}</td>
                                                     <td>{{ $covid_case->country_region }}</td>
+                                                    <td>{{ $covid_case->province_state }}</td>
                                                     <td>{{ $covid_case->lastupdate }}</td>
                                                     <td>{{ $covid_case->confirmed }}</td>
                                                     <td>{{ $covid_case->deaths }}</td>
