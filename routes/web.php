@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
+	$latest_batch = CovidCase::orderBy('batch', 'desc')->pluck('batch')->first();
 	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state', '')->distinct()->get();
 
     return view('welcome', $data);
@@ -33,7 +33,7 @@ Route::post('/global/pull/post', 'CovidCaseController@pullGlobaData')->name('pos
 Route::get('table', function(){
     $data['heading'] = "Table";
 	
-	$latest_batch = CovidCase::orderBy('batch', 'desc')->get()->pluck('batch')->first();
+	$latest_batch = CovidCase::orderBy('batch', 'desc')->pluck('batch')->first();
 	$data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('batch', $latest_batch)->where('province_state','')->distinct()->get();
 
 	return view('layouts.app')->nest('table', 'table', $data);
