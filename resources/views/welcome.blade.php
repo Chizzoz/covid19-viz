@@ -19,6 +19,8 @@
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
 		<link href="{{ asset('/css/leaflet.defaultextent.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/L.Control.Locate.min.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/custom.css') }}">
 		<style>
 			#map { width: 800px; height: 500px; }
 			.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
@@ -231,6 +233,7 @@
 					L.control.layers(baseMaps, overlayMaps).addTo(mymap);
 
 				</script>
+				<a class="github-fork-ribbon left-bottom fixed" href="https://github.com/Chizzoz/covid19-viz" target="_blank" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 			</div>
 			<!-- Footer -->
 			<div class="map-foot">

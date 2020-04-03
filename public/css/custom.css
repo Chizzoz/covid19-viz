@@ -91,3 +91,7 @@ img.user-profile-picture.is-rounded {
 .field.area-51 {
 	display: none;
 }
+
+.github-fork-ribbon:before {
+  background-color: #ffa500;
+}
