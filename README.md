@@ -1,6 +1,14 @@
 # covid19-viz
 Latest COVID-19 Stats Visualisations
 
+Street Map View
+
+<img src="./readme_assets/streetmap-viz.jpg" alt="Covid-19 Viz Street Map View" title="Covid-19 Viz Street Map View" width="800">
+
+Black and White Map View
+
+<img src="./readme_assets/black-and-white-viz.jpg" alt="Covid-19 Viz Black and White Map View" title="Covid-19 Viz Black and White Map View" width="800">
+
 # Contribution Guidelines
 Contributions can be made through pull requests.
 * You can start by forking this repo
