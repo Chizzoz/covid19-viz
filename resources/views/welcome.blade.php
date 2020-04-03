@@ -154,12 +154,12 @@
 				<script>
 					var grayscale = L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
 						maxZoom: 18,
-						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						attribution: 'Last Updated: {{ $last_updated_on }} | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					});
 
 					var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 						maxZoom: 19,
-						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						attribution: 'Last Updated: {{ $last_updated_on }} | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					});
 					
 					// var marker1 = L.marker([-15.4102, 28.2616]).bindPopup("<b>Hello world!</b><br>I am a popup.<br><a href='#'><img src='https://via.placeholder.com/480'></a>");
@@ -216,7 +216,7 @@
 						defaultExtentControl: true
 					});
 
-					mymap.attributionControl.addAttribution('Population data &copy; <a href="https://earthworks.stanford.edu/">Stanford University Earth Works</a>');
+					mymap.attributionControl.addAttribution('2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns Hopkins CSSE: <a href="https://github.com/CSSEGISandData/COVID-19" title="2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns Hopkins CSSE" target="_blank">GitHub Repository</a>');
 					
 					var baseMaps = {
 						"Streets": streets,

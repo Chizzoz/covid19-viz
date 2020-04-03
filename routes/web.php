@@ -18,10 +18,11 @@ Route::get('/', function () {
 	$latest_batch = CovidCase::orderBy('batch', 'desc')->pluck('batch')->first();
 	// $data['covid_cases'] = CovidCase::orderBy('country_region', 'desc')->where('country_region', '!=', 'US')->where('batch', $latest_batch)->distinct()->get();
 
-	$covid_cases = DB::table('covid_cases')->select(DB::raw("province_state, country_region, lastupdate, latitude, longitude, SUM(confirmed) AS confirmed, SUM(deaths) AS deaths, SUM(recovered) AS recovered, (SUM(confirmed) - SUM(recovered) - SUM(deaths)) AS active"))->where('batch', $latest_batch)->groupBy('province_state', 'country_region', 'lastupdate', 'latitude', 'longitude')->where('country_region', '!=', 'US')->where('active', '>=', 0)->orderBy('country_region', 'desc');
+	$covid_cases = DB::table('covid_cases')->select(DB::raw("province_state, country_region, lastupdate, latitude, longitude, SUM(confirmed) AS confirmed, SUM(deaths) AS deaths, SUM(recovered) AS recovered, (SUM(confirmed) - SUM(recovered) - SUM(deaths)) AS active"))->where('batch', $latest_batch)->groupBy('province_state', 'country_region', 'lastupdate', 'latitude', 'longitude')->where('country_region', '!=', 'US')->where('latitude', '!=', '')->where('longitude', '!=', '')->where('active', '>=', 0)->orderBy('country_region', 'desc');
 
 	$us_data = DB::table('covid_cases')->select(DB::raw("COUNT(province_state) AS province_state, country_region, lastupdate, COUNT(latitude) AS latitude, COUNT(longitude) AS longitude, SUM(confirmed) AS confirmed, SUM(deaths) AS deaths, SUM(recovered) AS recovered, (SUM(confirmed) - SUM(recovered) - SUM(deaths)) AS active"))->where('batch', $latest_batch)->groupBy('country_region', 'lastupdate')->where('country_region', 'US')->where('active', '>=', 0)->union($covid_cases)->get();
 
+	$data['last_updated_on'] = CovidCase::orderBy('batch', 'desc')->pluck('lastupdate')->first();
 	$data['covid_cases'] = $us_data;
 
     return view('welcome', $data);
