@@ -42,10 +42,6 @@ This [article](https://help.github.com/articles/using-pull-requests) describes i
 
 # Contributors
 
-@all-contributors bot
-
-## Contributors ✨
-
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -62,3 +58,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+To add yourself as a contributor, simply comment on an Issue or Pull Request, asking @all-contributors to add you as a contributor, for example:
+```
+    @all-contributors please add <your-username> for <your-contributions>
+```
+**\<contribution>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid `contribution` types.
+
+The bot will then create a Pull Request to add you as a contributor.
