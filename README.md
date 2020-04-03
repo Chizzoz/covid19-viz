@@ -36,3 +36,7 @@ If you would like to fix issues, please use issue number as feature branch name.
 ### Step 4: Create a pull request on Github
 
 This [article](https://help.github.com/articles/using-pull-requests) describes in a very good way how to create a pull request on the Github platform.
+
+# Contributors
+
+@all-contributors bot
