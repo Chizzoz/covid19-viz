@@ -237,7 +237,7 @@
 			</div>
 			<!-- Footer -->
 			<div class="map-foot">
-				<div class="content">
+				<div class="content has-text-centered">
 					<div class="card">
 						<div class="card-content">
 							<strong>Covid-19 Viz</strong> &copy; <a href="https://oneziko.com" title="One Ziko Homepage" target="_blank">One Ziko</a> <?php echo date("Y") ?>
