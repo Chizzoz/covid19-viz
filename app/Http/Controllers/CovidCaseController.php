@@ -54,7 +54,7 @@ class CovidCaseController extends Controller
         }
 
         try {
-            $current_batch = CovidCase::orderBy('created_at', 'desc')->get()->first();
+            $current_batch = CovidCase::orderBy('created_at', 'desc')->first();
             $current_batch = $current_batch->batch;
             //$current_unique_source = CovidCase::orderBy('unique_source', 'asc')->get()->first()->pluck('unique_source');
         } catch(\Exception $e) {
