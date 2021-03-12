@@ -132,27 +132,6 @@
             </div>
 			<div class="map-body">
 				<div id="mapid" class="mapclass"></div>
-				<?php
-					$filename = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-27-2020.csv';
-
-					// The nested array to hold all the arrays
-					$covid19_data = []; 
-					
-					// Open the file for reading
-					if (($h = fopen("{$filename}", "r")) !== FALSE) 
-					{
-					// Each line in the file is converted into an individual array that we call $data
-					// The items of the array are comma separated
-					while (($data = fgetcsv($h, 1000, ",")) !== FALSE) 
-					{
-						// Each individual array is being pushed into the nested array
-						$covid19_data[] = $data;		
-					}
-					
-					// Close the file
-					fclose($h);
-					}
-				?>
 				<script>
 					var grayscale = L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
 						maxZoom: 18,
