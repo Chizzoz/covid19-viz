@@ -1,70 +1,64 @@
-# covid19-viz
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-Latest COVID-19 Stats Visualisations
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
- Live Site: https://covid19-viz.oneziko.com/
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Street Map View
+## About Laravel
 
-<img src="./readme_assets/streetmap-viz.jpg" alt="Covid-19 Viz Street Map View" title="Covid-19 Viz Street Map View" width="800">
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Black and White Map View
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-<img src="./readme_assets/black-and-white-viz.jpg" alt="Covid-19 Viz Black and White Map View" title="Covid-19 Viz Black and White Map View" width="800">
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-# Contribution Guidelines
-Contributions can be made through pull requests.
-* You can start by forking this repo
-* Contribute to a branch relevant to you, if it exists
-* Otherwise, create a new branch, for a new implementation, for example; REST, Java, React, Vue, Laravel, etc
-* Once you are ready and everything checks out, you can push to your forked repo and create a pull request against this repo
-* We will then review and approve
+## Learning Laravel
 
-### Step 1: Fork the repository
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-To fork an repository, click on the Button **Fork** on every Github repository page.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-![Fork Repository](http://f.cl.ly/items/1B0e1u3D1M0s393c2z1r/22.10.13_22_39-Bildschirmkopie.jpeg)
+## Laravel Sponsors
 
-### Step 2: Clone the repository
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-```shell
-git clone git@github.com:YOUR_USERNAME/REPOSITORY_NAME.git
-# Clones your fork of the repository into the current directory in terminal on your computer
-```
+### Premium Partners
 
-### Step 3: Make changes and push code
-If you would like to fix issues, please use issue number as feature branch name.
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-### Step 4: Create a pull request on Github
+## Contributing
 
-This [article](https://help.github.com/articles/using-pull-requests) describes in a very good way how to create a pull request on the Github platform.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-# Contributors
+## Code of Conduct
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://oneziko.com"><img src="https://avatars0.githubusercontent.com/u/17289498?v=4" width="100px;" alt=""/><br /><sub><b>Chizzo Cheese</b></sub></a><br /><a href="https://github.com/Chizzoz/covid19-viz/commits?author=Chizzoz" title="Code">💻</a> <a href="#design-Chizzoz" title="Design">🎨</a></td>
-  </tr>
-</table>
+## Security Vulnerabilities
 
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+## License
 
-To add yourself as a contributor, simply comment on an Issue or Pull Request, asking @all-contributors to add you as a contributor, for example:
-```
-    @all-contributors please add <your-username> for <your-contributions>
-```
-**\<contribution>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid `contribution` types.
-
-The bot will then create a Pull Request to add you as a contributor.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
