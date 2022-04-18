@@ -3,7 +3,7 @@ html,body {
 }
 
 .mapclass {
-	height: 800px;
+	height: 100%;
 }
 
 img.is-rounded.user-profile-picture,

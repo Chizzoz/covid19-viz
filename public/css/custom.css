@@ -1,38 +1,46 @@
 body {
-	background: whitesmoke;
+    background: whitesmoke;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.map-body {
+  height: 85%;
+  min-height: 800px;
 }
 
 span.icon {
-	padding-right: 1rem;
+    padding-right: 1rem;
 }
 
 /* Navbar */
 .navbar-burger {
-	color: #ffffff;
+    color: #ffffff;
 }
-
-
 
 .navbar-item,
 .navbar-link {
-  color: #4a4a4a;
-  display: block;
-  line-height: 1.5;
-  padding: 0.5rem 0.75rem;
-  position: relative;
+    color: #4a4a4a;
+    display: block;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+    position: relative;
 }
 
 /* User profile picture */
 img.user-profile-picture.is-rounded {
-  display: block;
-  height: 100px;
-  width: auto;
+    display: block;
+    height: 100px;
+    width: auto;
 }
 
 .column.comments-wrapper img.user-profile-picture.is-rounded {
-  display: block;
-  height: 60px;
-  width: auto;
+    display: block;
+    height: 60px;
+    width: auto;
 }
 
 /* User profile card */
@@ -50,48 +58,48 @@ img.user-profile-picture.is-rounded {
 
 /* Content Checks */
 .checks-button {
-	float:left;
-	padding: 0px 5px;
-	cursor:pointer;
+    float: left;
+    padding: 0px 5px;
+    cursor: pointer;
 }
-.checks-button input[type="button"]{
-	width:25px;
-	height:25px;
-	border:0;
-	cursor:pointer;
+.checks-button input[type="button"] {
+    width: 25px;
+    height: 25px;
+    border: 0;
+    cursor: pointer;
 }
 .check {
-	background:url('../img/check.png');
+    background: url("../img/check.png");
 }
 .uncheck {
-	background:url('../img/uncheck.png');
+    background: url("../img/uncheck.png");
 }
 .checks-label {
-	font-size:12px;
-	font-weight: bold;
-	color:#2F529B;
-	height:20px;
-	padding:5px 0px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2f529b;
+    height: 20px;
+    padding: 5px 0px;
 }
 .desc {
-	clear:both;
-	color:#999;
+    clear: both;
+    color: #999;
 }
 
 .area-51 {
-	display: none;
+    display: none;
 }
 
 .image img {
-  display: block;
-  height: auto;
-  width: auto;
+    display: block;
+    height: auto;
+    width: auto;
 }
 
 .field.area-51 {
-	display: none;
+    display: none;
 }
 
 .github-fork-ribbon:before {
-  background-color: #ffa500;
+    background-color: #ffa500;
 }
